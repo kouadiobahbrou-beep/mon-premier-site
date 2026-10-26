@@ -1,18 +1,629 @@
 
-<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenue dans mon espace de formation en hébergement web !
-</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio professionnel en informatique et développement d'applications.">
+  <title>Brou Kouadio Bah Justin | Portfolio</title>
+
+  <style>
+    :root {
+      --vert: #146b45;
+      --vert-fonce: #103d2b;
+      --jaune: #f2b544;
+      --fond: #f5f7f6;
+      --texte: #24332b;
+      --gris: #68766e;
+      --blanc: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--fond);
+      color: var(--texte);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .conteneur {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    header {
+      background: var(--blanc);
+      border-bottom: 1px solid #e1e8e3;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navigation {
+      min-height: 76px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      color: var(--vert);
+      font-size: 1.1rem;
+      font-weight: 800;
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: var(--vert);
+    }
+
+    .hero {
+      background: linear-gradient(125deg, var(--vert-fonce), var(--vert));
+      color: white;
+      padding: 85px 0;
+    }
+
+    .hero-contenu {
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .surtitre {
+      color: var(--jaune);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      margin: 15px 0;
+    }
+
+    .hero p {
+      color: #e3eee7;
+      margin-bottom: 25px;
+      max-width: 650px;
+    }
+
+    .boutons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .bouton {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .bouton-principal {
+      background: var(--jaune);
+      color: #253125;
+    }
+
+    .bouton-secondaire {
+      border: 1px solid #ffffffa8;
+      color: white;
+    }
+
+    .bouton:hover {
+      transform: translateY(-2px);
+    }
+
+    .profil-carte {
+      background: #ffffff15;
+      border: 1px solid #ffffff40;
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--jaune);
+      color: var(--vert-fonce);
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .profil-carte h2 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    section {
+      padding: 70px 0;
+      scroll-margin-top: 85px;
+    }
+
+    .titre-section {
+      font-size: clamp(1.7rem, 4vw, 2.3rem);
+      margin-bottom: 12px;
+      color: var(--vert-fonce);
+    }
+
+    .introduction {
+      color: var(--gris);
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    .grille {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .carte {
+      background: var(--blanc);
+      border: 1px solid #e0e8e2;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 5px 18px #102d2110;
+    }
+
+    .carte h3 {
+      color: var(--vert);
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+    }
+
+    .carte p {
+      color: var(--gris);
+      font-size: 0.95rem;
+    }
+
+    .icone {
+      font-size: 1.7rem;
+      margin-bottom: 12px;
+    }
+
+    .fond-blanc {
+      background: white;
+    }
+
+    .competences {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .etiquette {
+      background: #e4f1e8;
+      color: #155d3b;
+      border: 1px solid #cce3d3;
+      padding: 8px 13px;
+      border-radius: 7px;
+      font-size: 0.9rem;
+      font-weight: 650;
+    }
+
+    .parcours {
+      border-left: 3px solid var(--vert);
+      padding: 5px 0 5px 22px;
+      margin: 20px 0;
+    }
+
+    .parcours h3 {
+      margin-bottom: 5px;
+    }
+
+    .parcours p {
+      color: var(--gris);
+    }
+
+    .stage {
+      background: var(--vert-fonce);
+      color: white;
+      border-radius: 18px;
+      padding: 35px;
+    }
+
+    .stage h2 {
+      margin-bottom: 12px;
+      font-size: 1.8rem;
+    }
+
+    .stage p {
+      color: #e0eee5;
+      max-width: 750px;
+    }
+
+    .contact-liste {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .contact-ligne {
+      padding: 15px;
+      border-radius: 10px;
+      background: white;
+      border: 1px solid #e0e8e2;
+    }
+
+    .contact-ligne strong {
+      color: var(--vert);
+    }
+
+    footer {
+      background: #102d21;
+      color: #dbe8df;
+      text-align: center;
+      padding: 25px 0;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 760px) {
+      .navigation {
+        padding: 15px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      nav {
+        gap: 12px 17px;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero-contenu {
+        grid-template-columns: 1fr;
+      }
+
+      .profil-carte {
+        max-width: 380px;
+      }
+
+      .grille {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+    }
+	
+/* Finitions du portfolio professionnel */
+
+body {
+  background: #f4f7f5;
+  color: #24332b;
+}
+
+::selection {
+  background: #d2ead9;
+  color: #103d2b;
+}
+
+nav a {
+  transition: color 0.2s ease;
+}
+
+nav a:hover {
+  color: #146b45;
+}
+
+.carte,
+.profil-carte,
+.stage,
+.contact-ligne {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carte:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(16, 61, 43, 0.12);
+}
+
+.etiquette {
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.etiquette:hover {
+  background: #cce8d5;
+  transform: translateY(-2px);
+}
+
+.bouton {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.bouton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
+}
+
+.contact-ligne a {
+  color: #146b45;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+:focus-visible {
+  outline: 3px solid #f2b544;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+  </style>
 </head>
+
 <body>
-    <h1>Bienvenue sur mon premier site web !</h1>
 
-    <p>Je suis en formation pour apprendre à héberger mes applications.</p>
+  <header>
+    <div class="conteneur navigation">
+      <a class="logo" href="#accueil">BKJ · Portfolio</a>
 
-    <p>Mon serveur Apache fonctionne correctement.</p>
-	<p>Mon objectif est de publier mes propres applications sur Internet.</p>
+      <nav aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#competences">Compétences</a>
+        <a href="#projets">Projets</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="conteneur hero-contenu">
+
+        <div>
+          <div class="surtitre">Informatique · Développement d'applications</div>
+
+          <h1>Brou Kouadio Bah Justin</h1>
+
+          <p>
+            Étudiant en informatique et développement d'applications,
+            je développe progressivement mes compétences en création
+            de sites web, applications et solutions numériques.
+            Je souhaite mettre mes connaissances en pratique au sein
+            d'une entreprise et continuer à apprendre sur le terrain.
+          </p>
+
+          <div class="boutons">
+            <a class="bouton bouton-principal" href="#projets">
+              Découvrir mes projets
+            </a>
+
+            <a class="bouton bouton-secondaire" href="#contact">
+              Me contacter
+            </a>
+          </div>
+        </div>
+
+        <aside class="profil-carte">
+          <div class="avatar" aria-label="Initiales BKJ">BKJ</div>
+          <h2>Développeur d'applications en formation</h2>
+          <p>Curiosité · Apprentissage · Résolution de problèmes</p>
+        </aside>
+
+      </div>
+    </section>
+
+    <section id="apropos">
+      <div class="conteneur">
+        <h2 class="titre-section">À propos de moi</h2>
+
+        <p class="introduction">
+          Mon objectif est de concevoir des solutions informatiques
+          utiles, accessibles et adaptées aux besoins des utilisateurs.
+          Je m'intéresse au développement web, aux bases de données,
+          aux applications de gestion et à l'assistance informatique.
+        </p>
+
+        <div class="parcours">
+          <h3>Formation en informatique</h3>
+          <p>
+            BTS 2 — Informatique et Développement d'Applications,
+            année académique 2025–2026.
+          </p>
+          <p>Institut supérieur Mo Bamba de Man.</p>
+        </div>
+
+        <div class="parcours">
+          <h3>Mon objectif professionnel</h3>
+          <p>
+            Renforcer mes compétences techniques, participer à des
+            projets concrets et acquérir une expérience professionnelle
+            dans le domaine informatique.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fond-blanc" id="competences">
+      <div class="conteneur">
+        <h2 class="titre-section">Mes compétences techniques</h2>
+
+        <p class="introduction">
+          Les technologies et outils que j'utilise dans mes exercices
+          et projets de formation.
+        </p>
+
+        <div class="competences">
+          <span class="etiquette">HTML</span>
+          <span class="etiquette">CSS</span>
+          <span class="etiquette">JavaScript</span>
+          <span class="etiquette">PHP</span>
+          <span class="etiquette">MySQL</span>
+          <span class="etiquette">SQL</span>
+          <span class="etiquette">MERISE</span>
+          <span class="etiquette">Bootstrap</span>
+          <span class="etiquette">XAMPP</span>
+          <span class="etiquette">Git et GitHub</span>
+          <span class="etiquette">Python — apprentissage</span>
+          <span class="etiquette">Flask — apprentissage</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="projets">
+      <div class="conteneur">
+        <h2 class="titre-section">Mes projets informatiques</h2>
+
+        <p class="introduction">
+          Quelques projets réalisés ou en cours de développement
+          dans le cadre de mon apprentissage.
+        </p>
+
+        <div class="grille">
+
+          <article class="carte">
+            <div class="icone" aria-hidden="true">🌴</div>
+            <h3>PALMCI Mécanisation — NEOPALM</h3>
+            <p>
+              Projet d'application de gestion lié à la mécanisation
+              agricole : suivi des équipements, opérations et maintenance.
+              Travail sur PHP, MySQL et une interface mobile Ionic.
+            </p>
+          </article>
+
+          <article class="carte">
+            <div class="icone" aria-hidden="true">🐍</div>
+            <h3>Application Python avec Flask</h3>
+            <p>
+              Projet d'initiation à Python et Flask, avec création
+              d'une première application web locale et découverte
+              du fonctionnement d'un serveur web.
+            </p>
+          </article>
+
+          <article class="carte">
+            <div class="icone" aria-hidden="true">🖥️</div>
+            <h3>Initiation à GLPI</h3>
+            <p>
+              Formation pratique à la gestion de parc informatique,
+              avec découverte de l'inventaire des ordinateurs et
+              des fonctionnalités de gestion du matériel.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="fond-blanc" id="stage">
+      <div class="conteneur">
+        <div class="stage">
+          <h2>À la recherche d'un stage professionnel</h2>
+
+          <p>
+            Je recherche un stage de validation de six mois dans le
+            domaine de l'informatique et du développement d'applications
+            en Côte d'Ivoire. Je suis motivé à apprendre, à collaborer
+            avec une équipe et à contribuer aux projets qui me seront confiés.
+          </p>
+
+          <div class="boutons">
+            <a class="bouton bouton-principal" href="#contact">
+              Prendre contact
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="conteneur">
+        <h2 class="titre-section">Contact professionnel</h2>
+
+        <p class="introduction">
+          Pour une opportunité de stage, un échange professionnel
+          ou une collaboration, mes coordonnées seront indiquées ici.
+        </p>
+
+        <div class="contact-liste">
+          <div class="contact-ligne">
+            <strong>Localisation :</strong> Rubino, Côte d'Ivoire
+          </div>
+
+          <div class="contact-ligne">
+            <strong>E-mail :</strong>
+            kouadiobahbrou@gmail.com
+          </div>
+
+          <div class="contact-ligne">
+            <strong>Téléphone :</strong>
+            0564230203/0757542381
+          </div>
+
+          <div class="contact-ligne">
+            <strong>GitHub :</strong>
+            <a href="https://github.com/kouadiobahbrou-beep"
+               target="_blank" rel="noopener noreferrer">
+              Voir mon profil GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="conteneur">
+      <p>
+        © <span id="annee"></span> Brou Kouadio Bah Justin —
+        Portfolio professionnel.
+      </p>
+      <p>Conçu avec HTML et CSS.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("annee").textContent =
+      new Date().getFullYear();
+  </script>
+
 </body>
 </html>
