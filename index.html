@@ -1,26 +1,28 @@
 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio professionnel en informatique et développement d'applications.">
-  <title>Brou Kouadio Bah Justin | Portfolio</title>
+  <meta name="description" content="Portfolio de Brou Kouadio Bah Justin, étudiant en Informatique et Développement d'Applications à la recherche d'un stage.">
+  <title>Mon portfolio | Brou Kouadio Bah Justin</title>
 
   <style>
     :root {
-      --vert: #146b45;
-      --vert-fonce: #103d2b;
-      --jaune: #f2b544;
-      --fond: #f5f7f6;
-      --texte: #24332b;
-      --gris: #68766e;
-      --blanc: #ffffff;
+      --primary: #145c43;
+      --primary-dark: #103f30;
+      --accent: #e6b94f;
+      --background: #f5f7f5;
+      --surface: #ffffff;
+      --text: #202d27;
+      --muted: #68766e;
+      --border: #dfe7e1;
+      --radius: 18px;
+      --shadow: 0 12px 35px rgba(20, 60, 42, 0.08);
     }
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     html {
@@ -28,602 +30,1039 @@
     }
 
     body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
       font-family: "Segoe UI", Arial, sans-serif;
-      background: var(--fond);
-      color: var(--texte);
       line-height: 1.7;
+    }
+
+    button, input, textarea {
+      font: inherit;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
     }
 
     a {
       color: inherit;
-      text-decoration: none;
     }
 
-    .conteneur {
-      width: min(1100px, 92%);
-      margin: auto;
+    .container {
+      width: min(1100px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
+    /* En-tête et navigation */
     header {
-      background: var(--blanc);
-      border-bottom: 1px solid #e1e8e3;
       position: sticky;
       top: 0;
       z-index: 10;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
     }
 
-    .navigation {
+    .navbar {
       min-height: 76px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       gap: 20px;
     }
 
-    .logo {
-      color: var(--vert);
-      font-size: 1.1rem;
+    .brand {
+      color: var(--primary);
+      font-size: 1.05rem;
       font-weight: 800;
+      text-decoration: none;
     }
 
-    nav {
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
       display: flex;
-      gap: 22px;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 7px;
       flex-wrap: wrap;
     }
 
-    nav a {
-      font-size: 0.92rem;
-      font-weight: 600;
+    .nav-button {
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 650;
+      font-size: 0.9rem;
+      transition: background 0.2s, color 0.2s;
     }
 
-    nav a:hover {
-      color: var(--vert);
+    .nav-button:hover,
+    .nav-button.active {
+      color: var(--primary);
+      background: #eaf3ed;
     }
 
-    .hero {
-      background: linear-gradient(125deg, var(--vert-fonce), var(--vert));
+    .nav-button.contact-nav {
       color: white;
-      padding: 85px 0;
+      background: var(--primary);
     }
 
-    .hero-contenu {
+    .nav-button.contact-nav:hover,
+    .nav-button.contact-nav.active {
+      background: var(--primary-dark);
+      color: white;
+    }
+
+    /* Rubriques : une seule visible à la fois */
+    .page-section {
+      display: none;
+      min-height: 65vh;
+      padding: 64px 0 80px;
+      animation: appear 0.3s ease;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Accueil */
+    .hero {
       display: grid;
-      grid-template-columns: 1.5fr 0.8fr;
-      gap: 45px;
+      grid-template-columns: 1.35fr 0.65fr;
       align-items: center;
+      gap: 55px;
+      padding: 45px 0 35px;
     }
 
-    .surtitre {
-      color: var(--jaune);
+    .eyebrow {
+      color: var(--primary);
+      font-size: 0.78rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 0.8rem;
+      letter-spacing: 0.13em;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
     }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.8rem);
-      line-height: 1.15;
       margin: 15px 0;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      letter-spacing: -0.04em;
     }
 
-    .hero p {
-      color: #e3eee7;
-      margin-bottom: 25px;
+    h1 span {
+      color: var(--primary);
+    }
+
+    .hero-description {
       max-width: 650px;
+      color: var(--muted);
+      font-size: 1.08rem;
     }
 
-    .boutons {
+    .hero-actions {
       display: flex;
-      flex-wrap: wrap;
       gap: 12px;
-      margin-top: 25px;
+      flex-wrap: wrap;
+      margin-top: 28px;
     }
 
-    .bouton {
-      display: inline-block;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-weight: 700;
-      transition: 0.2s;
-    }
-
-    .bouton-principal {
-      background: var(--jaune);
-      color: #253125;
-    }
-
-    .bouton-secondaire {
-      border: 1px solid #ffffffa8;
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 12px 19px;
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      background: var(--primary);
       color: white;
+      text-decoration: none;
+      font-weight: 750;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
     }
 
-    .bouton:hover {
+    .btn:hover {
+      background: var(--primary-dark);
       transform: translateY(-2px);
     }
 
-    .profil-carte {
-      background: #ffffff15;
-      border: 1px solid #ffffff40;
-      border-radius: 20px;
-      padding: 28px;
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: #eaf3ed;
+      color: var(--primary-dark);
+    }
+
+    .photo-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
 
-    .avatar {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 18px;
+    .photo-frame {
+      width: min(285px, 75vw);
+      aspect-ratio: 1;
       border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: var(--jaune);
-      color: var(--vert-fonce);
-      font-size: 2rem;
-      font-weight: 900;
+      padding: 9px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: var(--shadow);
     }
 
-    .profil-carte h2 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
+    .profile-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      background: #eaf0eb;
     }
 
-    section {
-      padding: 70px 0;
-      scroll-margin-top: 85px;
+    .photo-caption {
+      margin-top: 17px;
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    .titre-section {
-      font-size: clamp(1.7rem, 4vw, 2.3rem);
-      margin-bottom: 12px;
-      color: var(--vert-fonce);
+    .photo-help {
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: var(--muted);
     }
 
-    .introduction {
-      color: var(--gris);
-      max-width: 700px;
-      margin-bottom: 30px;
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 7px 12px;
+      border-radius: 99px;
+      background: #e6f4e9;
+      color: #21653d;
+      font-size: 0.83rem;
+      font-weight: 750;
     }
 
-    .grille {
+    .availability::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #329452;
+    }
+
+    .stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 35px;
+    }
+
+    .stat {
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* Titres et cartes */
+    .section-heading {
+      max-width: 720px;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      letter-spacing: -0.035em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 20px;
     }
 
-    .carte {
-      background: var(--blanc);
-      border: 1px solid #e0e8e2;
-      border-radius: 14px;
-      padding: 25px;
-      box-shadow: 0 5px 18px #102d2110;
+    .card {
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 5px 20px rgba(20, 60, 42, 0.035);
     }
 
-    .carte h3 {
-      color: var(--vert);
-      margin-bottom: 10px;
+    .card h3 {
+      margin: 12px 0 8px;
       font-size: 1.1rem;
     }
 
-    .carte p {
-      color: var(--gris);
-      font-size: 0.95rem;
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
     }
 
-    .icone {
-      font-size: 1.7rem;
-      margin-bottom: 12px;
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      border-radius: 14px;
+      background: #eaf3ed;
+      font-size: 1.35rem;
     }
 
-    .fond-blanc {
-      background: white;
-    }
-
-    .competences {
+    .tag-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
+      margin-top: 18px;
     }
 
-    .etiquette {
-      background: #e4f1e8;
-      color: #155d3b;
-      border: 1px solid #cce3d3;
-      padding: 8px 13px;
-      border-radius: 7px;
-      font-size: 0.9rem;
-      font-weight: 650;
+    .tag {
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: #edf4ef;
+      color: var(--primary);
+      font-size: 0.79rem;
+      font-weight: 750;
     }
 
-    .parcours {
-      border-left: 3px solid var(--vert);
-      padding: 5px 0 5px 22px;
-      margin: 20px 0;
-    }
-
-    .parcours h3 {
-      margin-bottom: 5px;
-    }
-
-    .parcours p {
-      color: var(--gris);
-    }
-
-    .stage {
-      background: var(--vert-fonce);
-      color: white;
-      border-radius: 18px;
-      padding: 35px;
-    }
-
-    .stage h2 {
-      margin-bottom: 12px;
-      font-size: 1.8rem;
-    }
-
-    .stage p {
-      color: #e0eee5;
-      max-width: 750px;
-    }
-
-    .contact-liste {
+    /* Formations */
+    .timeline {
       display: grid;
-      gap: 14px;
-      margin-top: 20px;
+      gap: 18px;
+      max-width: 850px;
     }
 
-    .contact-ligne {
-      padding: 15px;
-      border-radius: 10px;
+    .timeline-item {
+      position: relative;
+      padding: 24px 26px;
       background: white;
-      border: 1px solid #e0e8e2;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--primary);
+      border-radius: 13px;
     }
 
-    .contact-ligne strong {
-      color: var(--vert);
+    .timeline-item h3 {
+      margin: 7px 0;
     }
 
-    footer {
-      background: #102d21;
-      color: #dbe8df;
-      text-align: center;
-      padding: 25px 0;
+    .timeline-item p {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    .date-label {
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 800;
+    }
+
+    /* Projets */
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .project-card .tag-list {
+      margin-bottom: 20px;
+    }
+
+    .project-card .btn {
+      margin-top: auto;
+    }
+
+    .learning-note {
+      margin-top: 25px;
+      padding: 18px 20px;
+      border: 1px solid #e9d9a9;
+      border-radius: 13px;
+      background: #fff9e9;
+      color: #665322;
+      font-size: 0.92rem;
+    }
+
+    /* Contact */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .contact-info,
+    .contact-form {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: white;
+    }
+
+    .contact-info h3,
+    .contact-form h3 {
+      margin-top: 0;
+    }
+
+    .contact-info > p {
+      color: var(--muted);
+    }
+
+    .contact-item {
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child {
+      border-bottom: 0;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      color: var(--muted);
+      overflow-wrap: anywhere;
+    }
+
+    .contact-form label {
+      display: block;
+      margin: 15px 0 6px;
       font-size: 0.9rem;
+      font-weight: 750;
     }
 
-    @media (max-width: 760px) {
-      .navigation {
-        padding: 15px 0;
+    .contact-form input,
+    .contact-form textarea {
+      display: block;
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fbfcfb;
+      color: var(--text);
+    }
+
+    .contact-form textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: 2px solid #b5d5c1;
+      border-color: var(--primary);
+    }
+
+    .contact-form .btn {
+      margin-top: 18px;
+    }
+
+    .form-note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* Pied de page */
+    footer {
+      padding: 25px 0;
+      background: var(--primary-dark);
+      color: white;
+      text-align: center;
+      font-size: 0.88rem;
+    }
+
+    footer p {
+      margin: 4px 0;
+    }
+
+    footer span {
+      color: #f4d77f;
+    }
+
+    @media (max-width: 850px) {
+      .navbar {
         align-items: flex-start;
         flex-direction: column;
+        justify-content: center;
+        padding: 15px 0;
+        gap: 10px;
       }
 
-      nav {
-        gap: 12px 17px;
+      .nav-links {
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .nav-button {
+        padding: 9px 10px;
       }
 
       .hero {
-        padding: 55px 0;
-      }
-
-      .hero-contenu {
         grid-template-columns: 1fr;
+        gap: 35px;
       }
 
-      .profil-carte {
-        max-width: 380px;
+      .photo-column {
+        grid-row: 1;
       }
 
-      .grille {
+      .photo-frame {
+        width: 220px;
+      }
+
+      .hero-copy {
+        text-align: center;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .stats {
+        text-align: left;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-layout {
         grid-template-columns: 1fr;
-      }
-
-      section {
-        padding: 50px 0;
       }
     }
-	
-/* Finitions du portfolio professionnel */
 
-body {
-  background: #f4f7f5;
-  color: #24332b;
-}
+    @media (max-width: 560px) {
+      .container {
+        width: calc(100% - 28px);
+      }
 
-::selection {
-  background: #d2ead9;
-  color: #103d2b;
-}
+      .nav-links {
+        gap: 4px;
+      }
 
-nav a {
-  transition: color 0.2s ease;
-}
+      .nav-button {
+        font-size: 0.81rem;
+        padding: 8px;
+      }
 
-nav a:hover {
-  color: #146b45;
-}
+      .page-section {
+        padding: 40px 0 55px;
+      }
 
-.carte,
-.profil-carte,
-.stage,
-.contact-ligne {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
+      .hero {
+        padding-top: 20px;
+      }
 
-.carte:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 14px 30px rgba(16, 61, 43, 0.12);
-}
+      .photo-frame {
+        width: 185px;
+      }
 
-.etiquette {
-  transition: background 0.2s ease, transform 0.2s ease;
-}
+      .stats {
+        grid-template-columns: 1fr;
+      }
 
-.etiquette:hover {
-  background: #cce8d5;
-  transform: translateY(-2px);
-}
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
 
-.bouton {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+      .card,
+      .contact-info,
+      .contact-form {
+        padding: 21px;
+      }
+    }
 
-.bouton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 18px rgba(0, 0, 0, 0.12);
-}
-
-.contact-ligne a {
-  color: #146b45;
-  font-weight: 700;
-  overflow-wrap: anywhere;
-}
-
-:focus-visible {
-  outline: 3px solid #f2b544;
-  outline-offset: 4px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-  }
-}
-
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
   </style>
 </head>
 
 <body>
-
   <header>
-    <div class="conteneur navigation">
-      <a class="logo" href="#accueil">BKJ · Portfolio</a>
+    <div class="container navbar">
+      <a class="brand" href="#accueil" data-page="accueil">
+        BK<span>.</span> Justin
+      </a>
 
-      <nav aria-label="Navigation principale">
-        <a href="#accueil">Accueil</a>
-        <a href="#apropos">À propos</a>
-        <a href="#competences">Compétences</a>
-        <a href="#projets">Projets</a>
-        <a href="#contact">Contact</a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <button class="nav-button active" type="button" data-page="accueil" aria-current="page">Accueil</button>
+        <button class="nav-button" type="button" data-page="competences">Mes compétences</button>
+        <button class="nav-button" type="button" data-page="formations">Mes formations</button>
+        <button class="nav-button" type="button" data-page="projets">Mes projets</button>
+        <button class="nav-button contact-nav" type="button" data-page="contact">Me contacter</button>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero" id="accueil">
-      <div class="conteneur hero-contenu">
+    <!-- RUBRIQUE 1 : ACCUEIL -->
+    <section class="page-section active" id="accueil" aria-labelledby="titre-accueil">
+      <div class="container">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow">Portfolio professionnel</div>
 
-        <div>
-          <div class="surtitre">Informatique · Développement d'applications</div>
+            <h1 id="titre-accueil">
+              Bonjour, je suis <span>Brou Kouadio Bah Justin.</span>
+            </h1>
 
-          <h1>Brou Kouadio Bah Justin</h1>
+            <p class="hero-description">
+              Étudiant en Informatique et Développement d’Applications,
+              je m’intéresse à la création de sites web, aux applications
+              et aux solutions informatiques adaptées aux besoins réels.
+              Je recherche un stage de six mois pour développer mes
+              compétences et contribuer à des projets professionnels.
+            </p>
 
-          <p>
-            Étudiant en informatique et développement d'applications,
-            je développe progressivement mes compétences en création
-            de sites web, applications et solutions numériques.
-            Je souhaite mettre mes connaissances en pratique au sein
-            d'une entreprise et continuer à apprendre sur le terrain.
-          </p>
+            <div class="availability">À la recherche d’un stage de 6 mois</div>
 
-          <div class="boutons">
-            <a class="bouton bouton-principal" href="#projets">
-              Découvrir mes projets
-            </a>
+            <div class="hero-actions">
+              <button class="btn" type="button" data-page="projets">Découvrir mes projets →</button>
+              <button class="btn btn-outline" type="button" data-page="contact">Me contacter</button>
+            </div>
 
-            <a class="bouton bouton-secondaire" href="#contact">
-              Me contacter
-            </a>
+            <div class="stats">
+              <div class="stat">
+                <strong>Développement web</strong>
+                <span>Création de sites et interfaces</span>
+              </div>
+              <div class="stat">
+                <strong>PHP / MySQL</strong>
+                <span>Applications et bases de données</span>
+              </div>
+              <div class="stat">
+                <strong>En apprentissage</strong>
+                <span>Python, Flask et autres outils</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo-column">
+            <div class="photo-frame">
+              <img
+                class="profile-photo"
+                src="images/ma-photo.jpg"
+                alt="Photo de profil de Brou Kouadio Bah Justin"
+                onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 300%22%3E%3Crect width=%22300%22 height=%22300%22 fill=%22%23eaf0eb%22/%3E%3Ccircle cx=%22150%22 cy=%22105%22 r=%2255%22 fill=%22%2395b5a1%22/%3E%3Cpath d=%22M45 290c5-70 45-105 105-105s100 35 105 105%22 fill=%22%2395b5a1%22/%3E%3Ctext x=%22150%22 y=%22265%22 font-size=%2216%22 text-anchor=%22middle%22 fill=%22%23145c43%22 font-family=%22Arial%22%3EVotre photo%3C/text%3E%3C/svg%3E';"
+              >
+            </div>
+            <div class="photo-caption">Brou Kouadio Bah Justin</div>
+            <div class="photo-help">Informatique et développement d’applications</div>
           </div>
         </div>
-
-        <aside class="profil-carte">
-          <div class="avatar" aria-label="Initiales BKJ">BKJ</div>
-          <h2>Développeur d'applications en formation</h2>
-          <p>Curiosité · Apprentissage · Résolution de problèmes</p>
-        </aside>
-
       </div>
     </section>
 
-    <section id="apropos">
-      <div class="conteneur">
-        <h2 class="titre-section">À propos de moi</h2>
+    <!-- RUBRIQUE 2 : COMPÉTENCES -->
+    <section class="page-section" id="competences" aria-labelledby="titre-competences" hidden>
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Mon savoir-faire</div>
+          <h2 id="titre-competences">Mes compétences</h2>
+          <p>Les technologies et méthodes que j’utilise ou que j’apprends dans le cadre de mes projets informatiques.</p>
+        </div>
 
-        <p class="introduction">
-          Mon objectif est de concevoir des solutions informatiques
-          utiles, accessibles et adaptées aux besoins des utilisateurs.
-          Je m'intéresse au développement web, aux bases de données,
-          aux applications de gestion et à l'assistance informatique.
+        <div class="card-grid">
+          <article class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Développement web</h3>
+            <p>Création de pages web, structuration du contenu et mise en forme d’interfaces adaptées aux différents écrans.</p>
+            <div class="tag-list">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Bootstrap</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>Programmation et backend</h3>
+            <p>Développement de fonctionnalités, traitement des données et apprentissage de la programmation côté serveur.</p>
+            <div class="tag-list">
+              <span class="tag">PHP</span>
+              <span class="tag">Python — apprentissage</span>
+              <span class="tag">Flask — apprentissage</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🗄️</div>
+            <h3>Bases de données</h3>
+            <p>Organisation des données et apprentissage des opérations nécessaires à la gestion d’une base de données.</p>
+            <div class="tag-list">
+              <span class="tag">MySQL</span>
+              <span class="tag">SQL</span>
+              <span class="tag">MERISE</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🧰</div>
+            <h3>Outils de développement</h3>
+            <p>Utilisation d’outils pour développer, tester et gérer les versions des projets.</p>
+            <div class="tag-list">
+              <span class="tag">XAMPP</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">VS Code</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">📱</div>
+            <h3>Applications mobiles</h3>
+            <p>Découverte et développement d’une application mobile avec une interface adaptée au terrain.</p>
+            <div class="tag-list">
+              <span class="tag">Ionic</span>
+              <span class="tag">Angular</span>
+              <span class="tag">Capacitor</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🖥️</div>
+            <h3>Assistance informatique</h3>
+            <p>Découverte de la gestion de parc informatique et des outils de suivi des équipements.</p>
+            <div class="tag-list">
+              <span class="tag">GLPI</span>
+              <span class="tag">Administration locale</span>
+            </div>
+          </article>
+        </div>
+
+        <p class="learning-note">
+          Important : les outils indiqués « apprentissage » correspondent à des technologies que je suis en train de découvrir et de pratiquer. Le niveau de chaque compétence pourra être précisé au fur et à mesure.
         </p>
-
-        <div class="parcours">
-          <h3>Formation en informatique</h3>
-          <p>
-            BTS 2 — Informatique et Développement d'Applications,
-            année académique 2025–2026.
-          </p>
-          <p>Institut supérieur Mo Bamba de Man.</p>
-        </div>
-
-        <div class="parcours">
-          <h3>Mon objectif professionnel</h3>
-          <p>
-            Renforcer mes compétences techniques, participer à des
-            projets concrets et acquérir une expérience professionnelle
-            dans le domaine informatique.
-          </p>
-        </div>
       </div>
     </section>
 
-    <section class="fond-blanc" id="competences">
-      <div class="conteneur">
-        <h2 class="titre-section">Mes compétences techniques</h2>
-
-        <p class="introduction">
-          Les technologies et outils que j'utilise dans mes exercices
-          et projets de formation.
-        </p>
-
-        <div class="competences">
-          <span class="etiquette">HTML</span>
-          <span class="etiquette">CSS</span>
-          <span class="etiquette">JavaScript</span>
-          <span class="etiquette">PHP</span>
-          <span class="etiquette">MySQL</span>
-          <span class="etiquette">SQL</span>
-          <span class="etiquette">MERISE</span>
-          <span class="etiquette">Bootstrap</span>
-          <span class="etiquette">XAMPP</span>
-          <span class="etiquette">Git et GitHub</span>
-          <span class="etiquette">Python — apprentissage</span>
-          <span class="etiquette">Flask — apprentissage</span>
+    <!-- RUBRIQUE 3 : FORMATIONS -->
+    <section class="page-section" id="formations" aria-labelledby="titre-formations" hidden>
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Mon parcours</div>
+          <h2 id="titre-formations">Mes formations</h2>
+          <p>Mon parcours académique et les apprentissages qui accompagnent ma formation en informatique.</p>
         </div>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="date-label">Année académique 2025–2026</div>
+            <h3>BTS 2 — Informatique et Développement d’Applications</h3>
+            <p><strong>Institut supérieur Mo Bamba de Man</strong></p>
+            <p>Formation orientée vers le développement d’applications, les technologies web, les bases de données et la conception de solutions informatiques.</p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="date-label">Apprentissage pratique complémentaire</div>
+            <h3>Développement web et gestion de projets</h3>
+            <p>Pratique personnelle de HTML, CSS, JavaScript, PHP, MySQL, Git et GitHub à travers des projets et des exercices.</p>
+          </article>
+
+          <article class="timeline-item">
+            <div class="date-label">Apprentissage en cours</div>
+            <h3>Python, Flask et gestion de parc informatique</h3>
+            <p>Initiation à Python et Flask ainsi qu’à l’utilisation de GLPI dans un environnement local de formation.</p>
+          </article>
+        </div>
+
+        <p class="learning-note">
+          Les formations complémentaires présentées ici correspondent à un apprentissage pratique personnel. Elles ne constituent pas des diplômes ou certifications officiels.
+        </p>
       </div>
     </section>
 
-    <section id="projets">
-      <div class="conteneur">
-        <h2 class="titre-section">Mes projets informatiques</h2>
+    <!-- RUBRIQUE 4 : PROJETS -->
+    <section class="page-section" id="projets" aria-labelledby="titre-projets" hidden>
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Mes réalisations</div>
+          <h2 id="titre-projets">Mes projets informatiques</h2>
+          <p>Quelques projets qui illustrent ma pratique du développement et mon apprentissage des outils informatiques.</p>
+        </div>
 
-        <p class="introduction">
-          Quelques projets réalisés ou en cours de développement
-          dans le cadre de mon apprentissage.
-        </p>
-
-        <div class="grille">
-
-          <article class="carte">
-            <div class="icone" aria-hidden="true">🌴</div>
+        <div class="card-grid">
+          <article class="card project-card">
+            <div class="card-icon">🌴</div>
             <h3>PALMCI Mécanisation — NEOPALM</h3>
-            <p>
-              Projet d'application de gestion lié à la mécanisation
-              agricole : suivi des équipements, opérations et maintenance.
-              Travail sur PHP, MySQL et une interface mobile Ionic.
-            </p>
+            <p>Projet d’application de suivi de la mécanisation agricole, des équipements, des opérations et de la maintenance.</p>
+            <div class="tag-list">
+              <span class="tag">PHP</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Ionic</span>
+              <span class="tag">Angular</span>
+            </div>
+            <button class="btn btn-outline" type="button" data-page="contact">Demander des informations</button>
           </article>
 
-          <article class="carte">
-            <div class="icone" aria-hidden="true">🐍</div>
-            <h3>Application Python avec Flask</h3>
-            <p>
-              Projet d'initiation à Python et Flask, avec création
-              d'une première application web locale et découverte
-              du fonctionnement d'un serveur web.
-            </p>
+          <article class="card project-card">
+            <div class="card-icon">🐍</div>
+            <h3>Initiation à Python et Flask</h3>
+            <p>Création d’une première application web locale avec Flask afin de comprendre le fonctionnement d’un serveur web Python.</p>
+            <div class="tag-list">
+              <span class="tag">Python</span>
+              <span class="tag">Flask</span>
+              <span class="tag">HTML</span>
+            </div>
+            <button class="btn btn-outline" type="button" data-page="contact">Demander des informations</button>
           </article>
 
-          <article class="carte">
-            <div class="icone" aria-hidden="true">🖥️</div>
-            <h3>Initiation à GLPI</h3>
-            <p>
-              Formation pratique à la gestion de parc informatique,
-              avec découverte de l'inventaire des ordinateurs et
-              des fonctionnalités de gestion du matériel.
-            </p>
+          <article class="card project-card">
+            <div class="card-icon">🖥️</div>
+            <h3>Découverte de GLPI</h3>
+            <p>Environnement local d’apprentissage de la gestion de parc informatique et de l’inventaire des équipements.</p>
+            <div class="tag-list">
+              <span class="tag">GLPI</span>
+              <span class="tag">XAMPP</span>
+              <span class="tag">Informatique</span>
+            </div>
+            <button class="btn btn-outline" type="button" data-page="contact">Demander des informations</button>
           </article>
 
+          <article class="card project-card">
+            <div class="card-icon">💻</div>
+            <h3>Portfolio personnel</h3>
+            <p>Création d’un site personnel pour présenter mon parcours, mes compétences et mes projets avec une navigation interactive.</p>
+            <div class="tag-list">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">GitHub</span>
+            </div>
+            <button class="btn btn-outline" type="button" data-page="contact">Me contacter</button>
+          </article>
         </div>
-      </div>
-    </section>
 
-    <section class="fond-blanc" id="stage">
-      <div class="conteneur">
-        <div class="stage">
-          <h2>À la recherche d'un stage professionnel</h2>
-
-          <p>
-            Je recherche un stage de validation de six mois dans le
-            domaine de l'informatique et du développement d'applications
-            en Côte d'Ivoire. Je suis motivé à apprendre, à collaborer
-            avec une équipe et à contribuer aux projets qui me seront confiés.
-          </p>
-
-          <div class="boutons">
-            <a class="bouton bouton-principal" href="#contact">
-              Prendre contact
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="conteneur">
-        <h2 class="titre-section">Contact professionnel</h2>
-
-        <p class="introduction">
-          Pour une opportunité de stage, un échange professionnel
-          ou une collaboration, mes coordonnées seront indiquées ici.
+        <p class="learning-note">
+          Cette rubrique présente des projets de formation et d’apprentissage. Avant de les utiliser comme références professionnelles, ajoute des captures d’écran, des démonstrations et les liens publics disponibles.
         </p>
 
-        <div class="contact-liste">
-          <div class="contact-ligne">
-            <strong>Localisation :</strong> Rubino, Côte d'Ivoire
-          </div>
-
-          <div class="contact-ligne">
-            <strong>E-mail :</strong>
-            kouadiobahbrou@gmail.com
-          </div>
-
-          <div class="contact-ligne">
-            <strong>Téléphone :</strong>
-            0564230203/0757542381
-          </div>
-
-          <div class="contact-ligne">
-            <strong>GitHub :</strong>
-            <a href="https://github.com/kouadiobahbrou-beep"
-               target="_blank" rel="noopener noreferrer">
-              Voir mon profil GitHub
-            </a>
-          </div>
+        <div class="hero-actions">
+          <a class="btn" href="https://github.com/kouadiobahbrou-beep" target="_blank" rel="noopener noreferrer">Consulter mon GitHub ↗</a>
         </div>
       </div>
     </section>
 
+    <!-- RUBRIQUE 5 : CONTACT -->
+    <section class="page-section" id="contact" aria-labelledby="titre-contact" hidden>
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Échangeons</div>
+          <h2 id="titre-contact">Me contacter</h2>
+          <p>Je suis à la recherche d’un stage de six mois en informatique ou en développement d’applications en Côte d’Ivoire. Vous pouvez me contacter pour échanger sur mon profil.</p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-info">
+            <h3>Mes coordonnées</h3>
+            <p>Remplace les informations provisoires ci-dessous par tes véritables coordonnées avant de publier ton portfolio.</p>
+
+            <div class="contact-item">
+              <strong>📧 Adresse e-mail</strong>
+              <a href="mailto:TON-EMAIL@exemple.com">kouadiobahbrou@gmail.com</a>
+            </div>
+
+            <div class="contact-item">
+              <strong>📞 Téléphone</strong>
+              <span>0564230203/0757542381</span>
+            </div>
+
+            <div class="contact-item">
+              <strong>📍 Localisation</strong>
+              <span>Rubino, Côte d’Ivoire</span>
+            </div>
+
+            <div class="contact-item">
+              <strong>💼 GitHub</strong>
+              <a href="https://github.com/kouadiobahbrou-beep" target="_blank" rel="noopener noreferrer">Voir mon profil GitHub ↗</a>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contact-form">
+            <h3>Envoyer une demande par e-mail</h3>
+
+            <label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" placeholder="Votre nom et prénom" required>
+
+            <label for="email">Votre adresse e-mail</label>
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.com" required>
+
+            <label for="objet">Objet</label>
+            <input id="objet" name="objet" type="text" placeholder="Ex. : Proposition de stage" required>
+
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" placeholder="Écrivez votre message ici..." required></textarea>
+
+            <button class="btn" type="submit">Préparer l’e-mail →</button>
+
+            <p class="form-note" id="form-status" aria-live="polite">
+              Le bouton ouvrira votre logiciel de messagerie. Le site n'envoie pas lui-même les messages.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <div class="conteneur">
-      <p>
-        © <span id="annee"></span> Brou Kouadio Bah Justin —
-        Portfolio professionnel.
-      </p>
-      <p>Conçu avec HTML et CSS.</p>
+    <div class="container">
+      <p>© <span id="annee"></span> Brou Kouadio Bah Justin</p>
+      <p>Portfolio personnel — Informatique et Développement d’Applications</p>
     </div>
   </footer>
 
   <script>
-    document.getElementById("annee").textContent =
-      new Date().getFullYear();
-  </script>
+    // Affiche une seule rubrique à la fois.
+    const navButtons = document.querySelectorAll("[data-page]");
+    const sections = document.querySelectorAll(".page-section");
 
+    function afficherPage(pageId) {
+      const pageCible = document.getElementById(pageId);
+
+      if (!pageCible || !pageCible.classList.contains("page-section")) {
+        return;
+      }
+
+      sections.forEach(function(section) {
+        const active = section.id === pageId;
+        section.classList.toggle("active", active);
+        section.hidden = !active;
+      });
+
+      document.querySelectorAll(".nav-button").forEach(function(button) {
+        const active = button.dataset.page === pageId;
+        button.classList.toggle("active", active);
+
+        if (active) {
+          button.setAttribute("aria-current", "page");
+        } else {
+          button.removeAttribute("aria-current");
+        }
+      });
+
+      // Met à jour l'adresse dans le navigateur et permet le bouton Retour.
+      if (window.location.hash !== "#" + pageId) {
+        history.pushState({ page: pageId }, "", "#" + pageId);
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    navButtons.forEach(function(button) {
+      button.addEventListener("click", function(event) {
+        event.preventDefault();
+        afficherPage(button.dataset.page);
+      });
+    });
+
+    // Prend en charge les liens directs et le bouton Retour du navigateur.
+    function synchroniserAvecAdresse() {
+      const pageId = window.location.hash.replace("#", "") || "accueil";
+      const pageCible = document.getElementById(pageId);
+      afficherPage(
+        pageCible && pageCible.classList.contains("page-section")
+          ? pageId
+          : "accueil"
+      );
+    }
+
+    window.addEventListener("popstate", synchroniserAvecAdresse);
+    window.addEventListener("hashchange", synchroniserAvecAdresse);
+
+    // Prépare un message dans le logiciel de messagerie du visiteur.
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const destinataire = "TON-EMAIL@exemple.com";
+      const nom = document.getElementById("nom").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const objet = document.getElementById("objet").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (
+        !nom || !email || !objet || !message ||
+        destinataire === "TON-EMAIL@exemple.com"
+      ) {
+        document.getElementById("form-status").textContent =
+          "Vérifie les champs et remplace TON-EMAIL@exemple.com par ton véritable e-mail dans le code.";
+        return;
+      }
+
+      const corps =
+        "Nom : " + nom + "\n" +
+        "E-mail : " + email + "\n\n" +
+        message;
+
+      const lienMail =
+        "mailto:" + destinataire +
+        "?subject=" + encodeURIComponent(objet) +
+        "&body=" + encodeURIComponent(corps);
+
+      document.getElementById("form-status").textContent =
+        "Ton logiciel de messagerie va s'ouvrir. Vérifie le message et envoie-le.";
+
+      window.location.href = lienMail;
+    });
+
+    document.getElementById("annee").textContent = new Date().getFullYear();
+
+    // Affiche la bonne rubrique au premier chargement.
+    synchroniserAvecAdresse();
+  </script>
 </body>
 </html>
