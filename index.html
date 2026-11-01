@@ -1,5 +1,4 @@
 
-<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -130,6 +129,69 @@
 
     .page-section.active {
       display: block;
+    }
+
+    /* Animations légères pour rendre la navigation plus vivante. */
+    .page-section.active .hero-copy,
+    .page-section.active .photo-column,
+    .page-section.active .section-heading {
+      animation: riseIn 0.65s ease both;
+    }
+
+    .page-section.active .photo-column {
+      animation-delay: 0.12s;
+    }
+
+    .page-section.active .card,
+    .page-section.active .timeline-item,
+    .page-section.active .contact-info,
+    .page-section.active .contact-form {
+      animation: riseIn 0.55s ease both;
+    }
+
+    .page-section.active .card:nth-child(2),
+    .page-section.active .timeline-item:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .page-section.active .card:nth-child(3),
+    .page-section.active .timeline-item:nth-child(3) {
+      animation-delay: 0.16s;
+    }
+
+    .card,
+    .timeline-item {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover,
+    .timeline-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(20, 60, 42, 0.11);
+    }
+
+    .photo-frame {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes riseIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-7px);
+      }
     }
 
     @keyframes appear {
@@ -771,6 +833,17 @@
               <span class="tag">Ionic</span>
               <span class="tag">Angular</span>
               <span class="tag">Capacitor</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🔌</div>
+            <h3>Réseaux informatiques</h3>
+            <p>Cours pratiques suivis pendant les deux années de BTS, qui m’ont permis d’acquérir des connaissances de base sur les réseaux informatiques et leur fonctionnement.</p>
+            <div class="tag-list">
+              <span class="tag">Notions de réseaux</span>
+              <span class="tag">Communication réseau</span>
+              <span class="tag">Formation BTS IDA</span>
             </div>
           </article>
 
